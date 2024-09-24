@@ -1,7 +1,7 @@
 ﻿namespace KavsarApi.Extentions;
-public static class JWTExtention
+internal static class JWTExtention
 {
-    public static void AuthJwtConfig(this IServiceCollection services,IConfiguration configuration) {
+    internal static void AuthJwtConfig(this IServiceCollection services,IConfiguration configuration) {
         var key = configuration["JWT:Key"];
 
         services.AddAuthorization();

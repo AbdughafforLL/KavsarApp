@@ -1,11 +1,9 @@
 ﻿using KavsarApi.DTOs.AccountDTOs;
-using KavsarApi.Enums;
 using KavsarApi.Services.AccountServices;
 namespace KavsarApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize(Roles="User")]
 public class AccountController(IAccountService accountService) : ControllerBase
 {
     [HttpPost("Login")]
@@ -15,12 +13,14 @@ public class AccountController(IAccountService accountService) : ControllerBase
         return StatusCode(res.StatusCode, res);
     }
     [HttpPost("Register")]
-    public async Task<IActionResult> Register(RegisterDto model)
+    public async Task<IActionResult> Register([FromForm]RegisterDto model)
     {
         var res = await accountService.Register(model);
         return StatusCode(res.StatusCode, res);
     }
+
     [HttpGet("GetRoles")]
+    [Authorize(Roles = "Admin")]
     public IActionResult GetRoles()
     {
         var roles = Enum.GetValues(typeof(Roles)).Cast<Roles>().Select(v => v.ToString()).ToList(); ;

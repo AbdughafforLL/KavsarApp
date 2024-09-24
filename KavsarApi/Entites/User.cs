@@ -7,8 +7,15 @@ public class User
     public string UserName { get; set; } = null!;
     [MaxLength(100)]
     public string HashPassword { get; set; } = null!;
+    [MaxLength(100)]
+    public string Email { get; set; } = null!;
+
+    [MaxLength(9)]
+    public string PhoneNumber { get; set; } = null!;
     [MaxLength(50)]
     public string Role { get; set; } = null!;
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
+
+    public List<Bid> Bids { get; set; }
 }

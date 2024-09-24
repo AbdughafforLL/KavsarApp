@@ -1,33 +1,29 @@
-﻿using KavsarApi.Services.AccountServices;
+﻿using KavsarApi.AutoMapper;
+using KavsarApi.Services.AccountServices;
+using KavsarApi.Services.CarServices;
 
 namespace KavsarApi.Extentions;
-public static class DIExtention
+internal static class DIExtention
 {
-    public static void InjectServices(this IServiceCollection services) {
+    internal static void InjectServices(this IServiceCollection services) {
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<ICarService, CarService>();
     }
 
-    public static void InitialServices(this IServiceCollection services,IConfiguration configuration) {
+    internal static void InitialServices(this IServiceCollection services,IConfiguration configuration) {
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         services.AddControllers();
-        
+        services.AddAutoMapper(typeof(MapperProfile));
+
         services.DbContextConfig(configuration);
         services.SwaggerConfig();
         services.AuthJwtConfig(configuration);
         services.InjectServices();
     }
 
-    public async static void InitialMiddlewares(this WebApplication app)
+    internal static void InitialMiddlewares(this WebApplication app)
     {
-        try
-        {
-            var serviceProvider = app.Services.CreateScope().ServiceProvider;
-            var dataContext = serviceProvider.GetRequiredService<DataContext>();
-            await dataContext.Database.MigrateAsync();
-        }
-        catch (Exception) { }
-
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();

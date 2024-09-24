@@ -1,7 +1,7 @@
 ﻿namespace KavsarApi.Extentions;
-public static class SwaggerExtention
+internal static class SwaggerExtention
 {
-    public static void SwaggerConfig(this IServiceCollection services)
+    internal static void SwaggerConfig(this IServiceCollection services)
     {
         services.AddSwaggerGen(c =>
         {
