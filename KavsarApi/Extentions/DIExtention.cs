@@ -1,5 +1,6 @@
 ﻿using KavsarApi.AutoMapper;
 using KavsarApi.Services.AccountServices;
+using KavsarApi.Services.BidServices;
 using KavsarApi.Services.CarServices;
 
 namespace KavsarApi.Extentions;
@@ -8,6 +9,7 @@ internal static class DIExtention
     internal static void InjectServices(this IServiceCollection services) {
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<ICarService, CarService>();
+        services.AddScoped<IBidService, CarService>();
     }
 
     internal static void InitialServices(this IServiceCollection services,IConfiguration configuration) {

@@ -6,5 +6,5 @@ public interface IBidService
     Task<Response<string>> UpdateBid(UpdateBidDto model);
     Task<Response<bool>> DeleteBid(string bidId);
     Task<Response<GetBidDto>> GetBidById(string bidId);
-    Task<Response<List<GetBidDto>>> GetBidById(BidFilterDto model);
+    Task<Response<List<GetBidDto>>> GetBids(BidFilterDto model);
 }

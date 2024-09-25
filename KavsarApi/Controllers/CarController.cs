@@ -1,7 +1,7 @@
 ﻿using KavsarApi.DTOs.CarDTOs;
 using KavsarApi.Services.CarServices;
-
 namespace KavsarApi.Controllers;
+
 [ApiController]
 [Route("[controller]")]
 public class CarController(ICarService carService) : ControllerBase

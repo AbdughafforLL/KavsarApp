@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs\PaymentDTOSs\" />
     <Folder Include="Utils\" />
   </ItemGroup>
 
