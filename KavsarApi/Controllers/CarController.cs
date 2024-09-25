@@ -7,7 +7,7 @@ namespace KavsarApi.Controllers;
 public class CarController(ICarService carService) : ControllerBase
 {
     [HttpPost("CreateCar")]
-    [Authorize(Roles = "Buyer")]
+    [Authorize(Roles = "Seller")]
     public async Task<IActionResult> CreateCar(CreateCarDto model) {
         if (!ModelState.IsValid) {
             var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
@@ -19,7 +19,7 @@ public class CarController(ICarService carService) : ControllerBase
     }
 
     [HttpPut("UpdateCar")]
-    [Authorize(Roles = "Buyer")]
+    [Authorize(Roles = "Seller")]
     public async Task<IActionResult> UpdateCar(UpdateCarDto model)
     {
         if (!ModelState.IsValid)
@@ -32,7 +32,7 @@ public class CarController(ICarService carService) : ControllerBase
         return StatusCode(res.StatusCode, res);
     }
     [HttpDelete("DeleteCar")]
-    [Authorize(Roles = "Buyer")]
+    [Authorize(Roles = "Seller")]
     public async Task<IActionResult> DeleteCar(string carId)
     {
         if (!ModelState.IsValid)
